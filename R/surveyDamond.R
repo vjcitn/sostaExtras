@@ -110,29 +110,22 @@ struct <- reconstructShapeDensityImage(
    spe = getdat()
    validate(need(length(input$imgid)>0, "waiting for image id"))
    spe = spe[, which(colData(spe)[[imageColName]] == input$imgid)]
-   xy = spatialCoords(spe)
-   assayv = as.numeric(assay(spe[input$targ,], "quant_norm"))
-   thr = quantile(assayv, input$qthresh)
-   table(assayv>thr)
    validate(need(length(input$id)>0, "waiting for patient id"))
    validate(need(length(input$imgid)>0, "waiting for imgid"))
    sostOut = runsost(spe, imageId = input$imgid, catname = catname, markSel = markSel,
       imageColName = imageColName, dim.recon = dim.recon, lwd=lwd)
-#runsost = function(spe, imageId = "E03", catname = "cell_category", markSel="islet",
-#  imageColName = "image_name", dim.recon=500, lwd=2) {
-
    validate(need(!is.null(sostOut), "waiting for sosta"))
-   plot(sostOut$struct, reset=FALSE, lwd=lwd)
-   points(sostOut$xy[,1], sostOut$xy[,2], pch=19, col=ifelse(assayv>thr, "orange", "lightblue"))
-#   lines(sostOut$struct, lwd=lwd)
+   
+   # Use extracted visualization function
+   plot_expression_overlay(spe, input$targ, input$qthresh, sostOut, lwd)
    })
   output$bycall = renderPlot({
    spe = getdat()
    validate(need(length(input$imgid)>0, "waiting for image id"))
    spe = spe[, which(colData(spe)[[imageColName]] == input$imgid)]
-   sc = spatialCoords(spe)
-   ndf = data.frame(x=sc[,1], y=sc[,2], type=colData(spe)[[catname]])
-   ggplot(ndf, aes(x=x, y=y, colour=type)) + geom_point()
+   
+   # Use extracted visualization function
+   plot_cell_types(spe, catname)
   })
   }
  runApp(list(ui=ui, server=server))
