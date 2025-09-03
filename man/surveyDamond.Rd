@@ -33,6 +33,9 @@ surveyDamond(
 shiny app for running sosta on any image in the Damond SPE from sosta package
 }
 \examples{
+# NOTE: run example(surveyDamond, ask=FALSE) !!
+# NOTE: select target 'INS' for good view of structures identified with
+# default settings
 if (interactive()) {
  requireNamespace("AnnotationHub")
  requireNamespace("ExperimentHub")

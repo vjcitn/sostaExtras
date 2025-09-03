@@ -1,58 +1,4 @@
 
-#sc = spatialCoords(lit)
-#plot(sc, cex=.2, col=factor(lit$cell_category))
-
-#library(shiny)
-#library(sosta)
-#library(ggplot2)
-#
-#library(ExperimentHub)
-#library(SpatialExperiment)
-#library(SingleCellExperiment)
-#library(ggplot2)
-#library(sf)
-
-
-
-
-
-
-
-
-#
-#
-#
-# targs = rownames(spe)
-# ui = fluidPage(
-#  sidebarLayout(
-#   sidebarPanel(
-#    helpText("pick gene and display presence of cells with relatively 
-#         high expression (normalized value exceeds selected quantile)"),
-#    selectInput("targ", "target", sort(targs)),
-#    numericInput("qthresh", "qthr", value = .75, min=.2, max=.9, step=.1),
-#    width=2
-#   ),
-#   mainPanel(
-#    tabsetPanel(
-#     tabPanel("view", plotOutput("basic")),
-#     tabPanel("by call", plotOutput("bycall")),
-#     tabPanel("about", helpText("simple approach"))
-#    )
-#   )
-#  )
-# )
-# server = function(input, output) {
-#  output$basic = renderPlot({
-#   })
-#  output$bycall = renderPlot({
-#   sc = spatialCoords(spe)
-#   ndf = data.frame(x=sc[,1], y=sc[,2], type=colData(spe)[[catname]])
-#   ggplot(ndf, aes(x=x, y=y, colour=type)) + geom_point()
-#  })
-#  }
-# runApp(list(ui=ui, server=server))
-#}
-
 
 
 #' shiny app for running sosta on any image in the Damond SPE from sosta package
@@ -71,6 +17,9 @@
 #' @param dim.recon numeric(1) passed to sosta::reconstructShapeDensityImage
 #' @param lwd used for plotting boundary of structure
 #' @examples
+#' # NOTE: run example(surveyDamond, ask=FALSE) !!
+#' # NOTE: select target 'INS' for good view of structures identified with
+#' # default settings
 #' if (interactive()) {
 #'  requireNamespace("AnnotationHub")
 #'  requireNamespace("ExperimentHub")
