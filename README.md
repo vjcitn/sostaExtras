@@ -20,5 +20,9 @@ Change the initial 'target' selection to 'INS'
 ![run3](man/figures/soste3.jpg)
 
 Note that the qthr control can be used to 'decolor' cells that
-have target abundance measure below the selected quartile of
-the target
+have target 'abundance' measure below the selected quartile of
+the target.  Increasing the value of qthr will improve focus
+on cells with relatively greater 'abundances' of the selected target.
+
+Hypothesis: there are structures formed of cells with relatively high
+CA9 abundance, spatially complementary to the islet structures.
